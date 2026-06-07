@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>World Cup 2026 Sweepstake Draw</title>
+<style>
+:root{--bg:#081120;--bg2:#10213d;--panel:rgba(255,255,255,.08);--panel-border:rgba(255,255,255,.14);--text:#f8fbff;--muted:#b8c7dd;--accent:#58e6c5;--good:#7ef29a;--shadow:0 18px 50px rgba(0,0,0,.35)}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(circle at top left,rgba(88,230,197,.18),transparent 25%),radial-gradient(circle at top right,rgba(255,204,102,.14),transparent 20%),linear-gradient(160deg,var(--bg),var(--bg2))}
+.confetti-layer{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:9999}
+.confetti{position:absolute;top:-20px;width:10px;height:16px;border-radius:2px;opacity:.95;animation:confettiFall linear forwards;will-change:transform,opacity}
+@keyframes confettiFall{0%{transform:translate3d(0,0,0) rotate(0);opacity:1}100%{transform:translate3d(var(--drift),110vh,0) rotate(var(--spin));opacity:0}}
+.wrap{max-width:1300px;margin:0 auto;padding:16px}
+.hero{text-align:center;padding:10px 8px 20px}
+.hero h1{margin:0;font-size:clamp(2rem,4vw,4rem);line-height:1.05}
+.hero p{margin:10px auto 0;max-width:780px;color:var(--muted);font-size:clamp(1rem,1.8vw,1.15rem)}
+.grid{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:900px){.grid{grid-template-columns:1.05fr .95fr}}
+.panel{background:var(--panel);border:1px solid var(--panel-border);border-radius:22px;padding:16px;box-shadow:var(--shadow);backdrop-filter:blur(10px)}
+.controls{display:grid;gap:14px}
+label{display:block;margin-bottom:8px;color:var(--muted);font-weight:700}
+select{width:100%;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:1rem}
+option{color:#111}
+.button-row{display:flex;gap:12px;flex-wrap:wrap}
+button{border:0;padding:14px 20px;border-radius:999px;font-weight:800;cursor:pointer;font-size:1rem;transition:.15s ease;box-shadow:0 10px 25px rgba(0,0,0,.25)}
+button:hover{transform:translateY(-1px)}button:active{transform:translateY(1px)}button:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#29c8b1);color:#06231e}
+.btn-secondary{background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.stats{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px}
+.stat small{color:var(--muted);display:block;margin-bottom:6px;font-size:.9rem}
+.stat strong{font-size:clamp(1.2rem,2.8vw,2rem);display:block}
+.stage{margin-top:18px;text-align:center}
+.current-person{font-size:clamp(1.4rem,3vw,2.5rem);font-weight:900;margin-bottom:10px}
+.slot{min-height:150px;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:24px;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 20px 40px rgba(0,0,0,.25);overflow:hidden}
+.rolling-text{font-size:clamp(1.8rem,5vw,4rem);font-weight:900;letter-spacing:.02em;text-shadow:0 4px 18px rgba(0,0,0,.35)}
+.rolling{color:#ffe08a}.winner{color:var(--good);animation:pop .35s ease}
+@keyframes pop{0%{transform:scale(.92)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+.message{min-height:30px;margin-top:12px;color:var(--muted);font-size:1rem}
+.results h2{margin:0 0 14px;font-size:clamp(1.25rem,2.4vw,2rem)}
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px}
+.card h3{margin:0 0 12px;font-size:1.1rem}
+.pill-wrap{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:8px 10px;border-radius:999px;font-size:.92rem;font-weight:800;background:rgba(88,230,197,.14);border:1px solid rgba(88,230,197,.25);color:#cffff4}
+.pill.empty{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08);color:var(--muted);font-weight:600}
+.footer{text-align:center;color:var(--muted);margin:18px 0 6px;font-size:.95rem}
+.tv-mode .wrap{max-width:1500px;padding:28px}.tv-mode .slot{min-height:210px}.tv-mode button,.tv-mode select{font-size:1.12rem}.tv-mode .card h3{font-size:1.35rem}
+</style>
+</head>
+<body>
+<div class="confetti-layer" id="confettiLayer"></div>
+<div class="wrap">
+<section class="hero">
+<h1>World Cup 2026 Sweepstake Draw</h1>
+<p>44 teams, 11 participants, 4 teams each. One dramatic draw at a time.</p>
+</section>
+
+<div class="grid">
+<section class="panel controls">
+<div>
+<label for="participantSelect">Choose participant</label>
+<select id="participantSelect"></select>
+</div>
+
+<div class="button-row">
+<button id="drawBtn" class="btn-primary">🎲 Draw Team</button>
+<button id="autoBtn" class="btn-secondary">⚡ Auto Complete</button>
+<button id="resetBtn" class="btn-ghost">↺ Reset</button>
+<button id="tvBtn" class="btn-ghost">📺 TV Mode</button>
+<button id="fullscreenBtn" class="btn-ghost">⛶ Fullscreen</button>
+</div>
+
+<div class="stats">
+<div class="stat"><small>Teams remaining</small><strong id="teamsRemaining">44</strong></div>
+<div class="stat"><small>Draws completed</small><strong id="drawsCompleted">0 / 44</strong></div>
+<div class="stat"><small>Current participant slots</small><strong id="slotsFilled">0 / 4</strong></div>
+<div class="stat"><small>Status</small><strong id="statusText">Ready</strong></div>
+</div>
+
+<div class="stage">
+<div id="currentPerson" class="current-person">Andrew</div>
+<div class="slot"><div id="rollingText" class="rolling-text">Press Draw Team</div></div>
+<div id="message" class="message">Choose a participant and reveal their next team.</div>
+</div>
+</section>
+
+<section class="panel results">
+<h2>Draw Board</h2>
+<div id="cards" class="cards"></div>
+</section>
+</div>
+
+<div class="footer">Tip: use TV Mode or Fullscreen before putting it on the big screen.</div>
+</div>
+
+<script>
+const participants=["Andrew","Ted","Stephen","Elaine","Joe","Joanne","Mads","Magaret","Russell","Mandy","Ava"];
+const teams=["Canada","Mexico","USA","Algeria","Argentina","Australia","Austria","Belgium","Bosnia and Herzegovina","Brazil","Colombia","Congo DR","Côte d'Ivoire","Croatia","Czechia","Ecuador","Egypt","England","France","Germany","Ghana","IR Iran","Iraq","Japan","Jordan","Korea Republic","Morocco","Netherlands","Norway","Panama","Paraguay","Portugal","Qatar","Saudi Arabia","Scotland","Senegal","South Africa","Spain","Sweden","Switzerland","Tunisia","Türkiye","Uruguay","Uzbekistan"];
+const MAX_TEAMS_PER_PERSON=4;
+let remainingTeams=[...teams],assignments={},isDrawing=false,audioCtx=null;
+participants.forEach(n=>assignments[n]=[]);
+
+const participantSelect=document.getElementById("participantSelect"),
+drawBtn=document.getElementById("drawBtn"),
+autoBtn=document.getElementById("autoBtn"),
+resetBtn=document.getElementById("resetBtn"),
+tvBtn=document.getElementById("tvBtn"),
+fullscreenBtn=document.getElementById("fullscreenBtn"),
+teamsRemainingEl=document.getElementById("teamsRemaining"),
+drawsCompletedEl=document.getElementById("drawsCompleted"),
+slotsFilledEl=document.getElementById("slotsFilled"),
+statusTextEl=document.getElementById("statusText"),
+currentPersonEl=document.getElementById("currentPerson"),
+rollingTextEl=document.getElementById("rollingText"),
+messageEl=document.getElementById("message"),
+cardsEl=document.getElementById("cards"),
+confettiLayer=document.getElementById("confettiLayer");
+
+function initSelect(){participantSelect.innerHTML="";participants.forEach(name=>{const o=document.createElement("option");o.value=name;o.textContent=name;participantSelect.appendChild(o)})}
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function getCompletedDraws(){return participants.reduce((sum,p)=>sum+assignments[p].length,0)}
+function getEligibleParticipants(){return participants.filter(p=>assignments[p].length<MAX_TEAMS_PER_PERSON)}
+
+function updateUI(){
+  const person=participantSelect.value,filled=assignments[person]?.length||0;
+  teamsRemainingEl.textContent=remainingTeams.length;
+  drawsCompletedEl.textContent=`${getCompletedDraws()} / ${teams.length}`;
+  slotsFilledEl.textContent=`${filled} / ${MAX_TEAMS_PER_PERSON}`;
+  currentPersonEl.textContent=person;
+  statusTextEl.textContent=remainingTeams.length===0?"Complete":filled>=MAX_TEAMS_PER_PERSON?"Player Full":"Ready";
+  drawBtn.disabled=isDrawing||remainingTeams.length===0||filled>=MAX_TEAMS_PER_PERSON;
+  autoBtn.disabled=isDrawing||remainingTeams.length===0;
+  renderCards();
+}
+
+function renderCards(){
+  cardsEl.innerHTML="";
+  participants.forEach(person=>{
+    const card=document.createElement("div");
+    card.className="card";
+    const title=document.createElement("h3");
+    title.textContent=`${person} (${assignments[person].length}/${MAX_TEAMS_PER_PERSON})`;
+    card.appendChild(title);
+    const wrap=document.createElement("div");
+    wrap.className="pill-wrap";
+    const assigned=assignments[person];
+    for(let i=0;i<MAX_TEAMS_PER_PERSON;i++){
+      const pill=document.createElement("span");
+      pill.className="pill"+(assigned[i]?"":" empty");
+      pill.textContent=assigned[i]||`Slot ${i+1}`;
+      wrap.appendChild(pill);
+    }
+    card.appendChild(wrap);
+    cardsEl.appendChild(card);
+  });
+}
+
+function pickRandomTeam(){return remainingTeams[Math.floor(Math.random()*remainingTeams.length)]}
+function removeTeam(team){remainingTeams=remainingTeams.filter(t=>t!==team)}
+function ensureAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==="suspended")audioCtx.resume()}
+function beep(freq=440,duration=.08,type="sine",volume=.03){
+  if(!audioCtx)return;
+  const osc=audioCtx.createOscillator(),gain=audioCtx.createGain(),now=audioCtx.currentTime;
+  osc.type=type;osc.frequency.value=freq;gain.gain.value=volume;
+  osc.connect(gain);gain.connect(audioCtx.destination);
+  gain.gain.setValueAtTime(volume,now);
+  gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
+  osc.start(now);osc.stop(now+duration);
+}
+function playTick(){beep(700+Math.random()*260,.05,"square",.018)}
+function playWin(){beep(523.25,.12,"triangle",.04);setTimeout(()=>beep(659.25,.12,"triangle",.04),90);setTimeout(()=>beep(783.99,.18,"triangle",.05),180)}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+function burstConfetti(){
+  const colors=["#58e6c5","#ffcc66","#ffffff","#7ef29a","#a78bfa"],count=window.innerWidth<700?70:110;
+  for(let i=0;i<count;i++){
+    const piece=document.createElement("span");
+    piece.className="confetti";
+    piece.style.left=`${Math.random()*100}vw`;
+    piece.style.background=colors[Math.floor(Math.random()*colors.length)];
+    piece.style.width=`${8+Math.random()*6}px`;
+    piece.style.height=`${10+Math.random()*10}px`;
+    piece.style.setProperty("--drift",`${-120+Math.random()*240}px`);
+    piece.style.setProperty("--spin",`${180+Math.random()*720}deg`);
+    piece.style.animationDuration=`${2.8+Math.random()*1.8}s`;
+    confettiLayer.appendChild(piece);
+    setTimeout(()=>piece.remove(),5000);
+  }
+}
+
+async function dramaticDraw(person){
+  if(isDrawing)return;
+  if(assignments[person].length>=MAX_TEAMS_PER_PERSON){messageEl.textContent=`${person} already has all 4 teams.`;updateUI();return}
+  if(remainingTeams.length===0){messageEl.textContent="All teams have been drawn.";updateUI();return}
+
+  ensureAudio();isDrawing=true;updateUI();
+  currentPersonEl.textContent=person;
+  rollingTextEl.className="rolling-text rolling";
+  messageEl.textContent=`Drawing a team for ${person}...`;
+  statusTextEl.textContent="Drawing";
+
+  const shuffled=shuffle(remainingTeams),finalTeam=pickRandomTeam();
+  let loops=Math.min(30,Math.max(20,remainingTeams.length));
+  for(let i=0;i<loops;i++){
+    const shown=shuffled[i%shuffled.length];
+    rollingTextEl.textContent=shown;
+    rollingTextEl.style.transform=`translateY(${i%2===0?"-2px":"2px"})`;
+    playTick();
+    const progress=i/loops,delay=75+(progress*145);
+    await sleep(delay);
+  }
+
+  rollingTextEl.style.transform="translateY(0)";
+  rollingTextEl.textContent=finalTeam;
+  rollingTextEl.className="rolling-text winner";
+  assignments[person].push(finalTeam);
+  removeTeam(finalTeam);
+  playWin();
+  burstConfetti();
+
+  messageEl.textContent=assignments[person].length>=MAX_TEAMS_PER_PERSON?`🎉 ${person} draws ${finalTeam} — and now has all 4 teams!`:`🎉 ${person} draws ${finalTeam}!`;
+  isDrawing=false;
+  updateUI();
+
+  if(remainingTeams.length===0){
+    statusTextEl.textContent="Complete";
+    messageEl.textContent="🏆 Sweepstake complete!";
+  }else if(assignments[person].length>=MAX_TEAMS_PER_PERSON){
+    const nextEligible=getEligibleParticipants()[0];
+    if(nextEligible){
+      participantSelect.value=nextEligible;
+      currentPersonEl.textContent=nextEligible;
+      slotsFilledEl.textContent=`${assignments[nextEligible].length} / ${MAX_TEAMS_PER_PERSON}`;
+    }
+  }
+}
+
+async function autoComplete(){
+  if(isDrawing||remainingTeams.length===0)return;
+  for(const person of participants){
+    while(assignments[person].length<MAX_TEAMS_PER_PERSON&&remainingTeams.length>0){
+      participantSelect.value=person;
+      updateUI();
+      await dramaticDraw(person);
+      await sleep(500);
+    }
+  }
+}
+
+function resetAll(){
+  remainingTeams=[...teams];
+  assignments={};
+  participants.forEach(name=>assignments[name]=[]);
+  isDrawing=false;
+  participantSelect.value=participants[0];
+  rollingTextEl.textContent="Press Draw Team";
+  rollingTextEl.className="rolling-text";
+  messageEl.textContent="Choose a participant and reveal their next team.";
+  document.body.classList.remove("tv-mode");
+  confettiLayer.innerHTML="";
+  updateUI();
+}
+
+async function toggleFullscreen(){
+  try{
+    if(!document.fullscreenElement)await document.documentElement.requestFullscreen();
+    else await document.exitFullscreen();
+  }catch(err){messageEl.textContent="Fullscreen may not be allowed in this browser."}
+}
+
+participantSelect.addEventListener("change",()=>{
+  currentPersonEl.textContent=participantSelect.value;
+  rollingTextEl.className="rolling-text";
+  if(!isDrawing)rollingTextEl.textContent="Press Draw Team";
+  messageEl.textContent=`Ready to draw for ${participantSelect.value}.`;
+  updateUI();
+});
+
+drawBtn.addEventListener("click",()=>dramaticDraw(participantSelect.value));
+autoBtn.addEventListener("click",autoComplete);
+resetBtn.addEventListener("click",resetAll);
+tvBtn.addEventListener("click",()=>document.body.classList.toggle("tv-mode"));
+fullscreenBtn.addEventListener("click",toggleFullscreen);
+
+initSelect();
+participantSelect.value=participants[0];
+updateUI();
+</script>
+</body>
+</html>
